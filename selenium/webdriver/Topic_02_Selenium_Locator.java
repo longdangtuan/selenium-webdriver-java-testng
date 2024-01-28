@@ -58,6 +58,7 @@ public class Topic_02_Selenium_Locator {
     }
     @Test
     public void TC_05_LinkText() {
+        // do chinh xac tuyet doi
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
@@ -65,7 +66,7 @@ public class Topic_02_Selenium_Locator {
     }
     @Test
     public void TC_06_Partial_LinkText() {
-        // do chinh xac tuyet doi
+
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
