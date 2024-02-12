@@ -33,7 +33,7 @@ public class Topic_11_Textbox_TextArea {
         driver.findElement(By.xpath("//button[@title=\"Register\"]")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Thank you for registering with Main Website Store.']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']//p[contains(text(),'Long Dang')]")).isDisplayed());
-
+        //
 
     }
 
