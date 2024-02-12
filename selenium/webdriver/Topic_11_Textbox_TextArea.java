@@ -1,0 +1,176 @@
+package webdriver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+public class Topic_11_Textbox_TextArea {
+    WebDriver driver;
+
+    @BeforeClass
+    public void beforeClass(){
+        driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+    }
+
+    @Test
+    public void TC_01_Emty_Email_And_Password()  {
+        driver.get("http://live.techpanda.org");
+        driver.findElement(By.xpath("//div[@class=\"footer\"]//a[@title=\"My Account\"]")).click();
+        driver.findElement(By.xpath("//a[@title=\"Create an Account\"]")).click();
+        driver.findElement(By.id("firstname")).sendKeys("Long");
+        driver.findElement(By.id("lastname")).sendKeys("Dang");
+        driver.findElement(By.id("email_address")).sendKeys("reusmarco07016@gmail.com");
+        driver.findElement(By.id("password")).sendKeys("Bvb_1909");
+        driver.findElement(By.id("confirmation")).sendKeys("Bvb_1909");
+        driver.findElement(By.xpath("//button[@title=\"Register\"]")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Thank you for registering with Main Website Store.']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']//p[contains(text(),'Long Dang')]")).isDisplayed());
+
+
+    }
+
+
+    @Test
+    public void TC_02_isEnabled(){
+        driver.get("https://automationfc.github.io/basic-form/index.html");
+        if (driver.findElement(By.name("user_email")).isEnabled()){
+            System.out.println("Email is enabled");
+        } else {
+            System.out.println("Email is disabled");
+        }
+
+        if (driver.findElement(By.xpath("//input[@id='under_18']")).isEnabled()){
+            System.out.println("Under 18 button is enabled");
+        } else {
+            System.out.println("Under 18 button is disabled");
+        }
+
+        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isEnabled()){
+            System.out.println("Education is enabled");
+        } else {
+            System.out.println("Education is disabled");
+        }
+
+        if (driver.findElement(By.name("user_job1")).isEnabled()){
+            System.out.println("Job Role 1 is enabled");
+        } else {
+            System.out.println("Job Role 1 is disabled");
+        }
+
+        if (driver.findElement(By.name("user_job2")).isEnabled()){
+            System.out.println("Job Role 2 is enabled");
+        } else {
+            System.out.println("Job Role 2 is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("input#development")).isEnabled()){
+            System.out.println("Development Interest is enabled");
+        } else {
+            System.out.println("Development Interest is disabled");
+        }
+
+        if (driver.findElement(By.name("slider-1")).isEnabled()){
+            System.out.println("Slider 01 is enabled");
+        } else {
+            System.out.println("Slider 01 is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("input#disable_password")).isEnabled()){
+            System.out.println("Password is enabled");
+        } else {
+            System.out.println("Password is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("input#radio-disabled")).isEnabled()){
+            System.out.println("Radio button is enabled");
+        } else {
+            System.out.println("Radio button is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("textarea#bio")).isEnabled()){
+            System.out.println("Bio is enabled");
+        } else {
+            System.out.println("Bio is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("select#job3")).isEnabled()){
+            System.out.println("Job 03 is enabled");
+        } else {
+            System.out.println("Job 03 is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("input#check-disbaled")).isEnabled()){
+            System.out.println("Interest Checkbox is enabled");
+        } else {
+            System.out.println("Interest Checkbox is disabled");
+        }
+
+        if (driver.findElement(By.cssSelector("input#slider-2")).isEnabled()){
+            System.out.println("Slider 02 is enabled");
+        } else {
+            System.out.println("Slider 02 is disabled");
+        }
+    }
+
+    @Test
+    public void TC_03_isSelected(){
+
+        driver.get("https://automationfc.github.io/basic-form/index.html");
+        driver.findElement(By.id("under_18")).click();
+        driver.findElement(By.name("java")).click();
+
+        Assert.assertTrue(driver.findElement(By.id("under_18")).isSelected());
+        Assert.assertTrue(driver.findElement(By.name("java")).isSelected());
+
+        driver.findElement(By.name("java")).click();
+        Assert.assertFalse(driver.findElement(By.name("java")).isSelected());
+
+    }
+
+    @Test
+    public void TC_04_MailChimp(){
+        driver.get("https://login.mailchimp.com/signup/");
+        driver.findElement(By.id("email")).sendKeys("Reusmarco0706@gmail.com");
+
+
+        // Case 1
+        driver.findElement(By.cssSelector("input#new_password")).sendKeys("12345");
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.username-check.completed")).isDisplayed());
+
+        // CAse 6 - Valid
+        driver.findElement(By.cssSelector("input#new_password")).clear();
+        driver.findElement(By.cssSelector("input#new_password")).sendKeys("12345qW@1");
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.uppercase-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.number-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.special-char.completed")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li[class='8-char completed']")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.username-check.completed")).isDisplayed());
+    }
+
+
+
+    @AfterClass
+    public void afterClass(){driver.quit();}
+
+    public void sleepInSeconds(long timeInSecond){
+        try {
+            Thread.sleep(timeInSecond * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
