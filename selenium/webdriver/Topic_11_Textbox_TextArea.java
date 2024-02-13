@@ -1,5 +1,6 @@
 package webdriver;
 
+import org.bouncycastle.asn1.cmp.Challenge;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Topic_11_Textbox_TextArea {
@@ -21,19 +23,46 @@ public class Topic_11_Textbox_TextArea {
     }
 
     @Test
-    public void TC_01_Emty_Email_And_Password()  {
+    public void TC_01_Handle_Textbox_TextArea()  {
         driver.get("http://live.techpanda.org");
-        driver.findElement(By.xpath("//div[@class=\"footer\"]//a[@title=\"My Account\"]")).click();
-        driver.findElement(By.xpath("//a[@title=\"Create an Account\"]")).click();
-        driver.findElement(By.id("firstname")).sendKeys("Long");
-        driver.findElement(By.id("lastname")).sendKeys("Dang");
-        driver.findElement(By.id("email_address")).sendKeys("reusmarco07016@gmail.com");
-        driver.findElement(By.id("password")).sendKeys("Bvb_1909");
-        driver.findElement(By.id("confirmation")).sendKeys("Bvb_1909");
-        driver.findElement(By.xpath("//button[@title=\"Register\"]")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Thank you for registering with Main Website Store.']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']//p[contains(text(),'Long Dang')]")).isDisplayed());
-        //
+        driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
+        sleepInSeconds(3);
+        String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password ="Bvb@1909";
+        String fullName = firstName + " " + lastName;
+
+        // Register
+        driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+        driver.findElement(By.id("firstname")).sendKeys(firstName);
+        driver.findElement(By.id("lastname")).sendKeys(lastName);
+        driver.findElement(By.id("email_address")).sendKeys(emailAddress);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("confirmation")).sendKeys(password);
+        driver.findElement(By.xpath("//button[@title='Register']")).click();
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg span")).getText(),"Thank you for registering with Main Website Store.");
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.welcome-msg strong")).getText(),"Hello, " + fullName +"!");
+
+        String contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
+        Assert.assertTrue(contactInfo.contains(fullName));
+        Assert.assertTrue(contactInfo.contains(emailAddress));
+
+        // Verify Account
+        driver.findElement(By.xpath("//a[text()='Account Information']")).click();
+        sleepInSeconds(2);
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("input#firstname")).getAttribute("value"), firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input#lastname")).getAttribute("value"), lastName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input#email")).getAttribute("value"), emailAddress);
+
+        // Logout
+
+        driver.findElement(By.cssSelector("a.skip-account")).click();
+        sleepInSeconds(2);
+        driver.findElement(By.cssSelector("a[title='Log Out']")).click();
+        sleepInSeconds(5);
+        // driver.findElement(By.xpath("//h1[contains(text(),'Login or Create an Account')]")).isDisplayed();
+
+
 
     }
 
@@ -172,5 +201,10 @@ public class Topic_11_Textbox_TextArea {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+    }
+    public String getEmailAddress(){
+        Random random = new Random();
+        return  "Bvb" + random.nextInt() + "@gmail.com";
     }
 }
