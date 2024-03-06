@@ -115,11 +115,7 @@ public class Topic_15_Checkbox_Radio_Button {
 
     }
 
-    @Test
-    public void TC_04_Editable_Dropdown()  {
 
-
-    }
 
 
     @AfterClass
