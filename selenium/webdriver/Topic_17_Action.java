@@ -2,6 +2,7 @@ package webdriver;
 
 import com.beust.ah.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,14 +22,14 @@ public class Topic_17_Action {
 
     WebDriverWait explicitWait;
     Actions actions;
-
+    JavascriptExecutor javascriptExecutor;
 
     @BeforeClass
     public void beforeClass(){
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
+        javascriptExecutor = (JavascriptExecutor) driver;
         // ngầm định: không rõ ràng cho 1 trạng thái cụ thể nào của element
         // ngầm định cho việc tìm elements - Find Element(s)
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -108,19 +109,54 @@ Assert.assertTrue(driver.findElement(By.xpath("//ol[@class='breadcrumb']//strong
     }
 
 
+    @Test
+    public void TC_06_Double_Click()  {
+        driver.get("https://automationfc.github.io/basic-form/index.html");
+        WebElement doubleClickButton = driver.findElement(By.xpath("//button[text()='Double click me']"));
+        // Cần scroll tới element rồi mới click (Firefox)
+        if (driver.toString().contains("firefox")){
+            // scrollIntoView(true): kéo mép trên của element lên phía trên cùng của viewport
+            // scrollIntoView(false): kéo mép dưới của element xuống phía dưới cùng của viewport
+            javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", doubleClickButton);
+        }
+
+        actions.doubleClick(doubleClickButton).perform();
+        Assert.assertEquals(driver.findElement(By.cssSelector("p#demo")).getText(),"Hello Automation Guys!" );
+    }
 
     @Test
-    public void TC_09_Promt_Alert()  {
+    public void TC_07_Right_Click()  {
+driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
+actions.contextClick(driver.findElement(By.cssSelector("span.context-menu-one"))).perform();
+// Verify Quit Menu is displayed
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.context-menu-icon-quit")).isDisplayed());
+
+        // Hover to quit element
+        actions.moveToElement(driver.findElement(By.cssSelector("li.context-menu-icon-quit"))).perform();
+        // Verify quit element visible + hover
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.context-menu-icon-quit.context-menu-hover.context-menu-visible")).isDisplayed());
+        // Click on quit and verify menu is not displayed
+        actions.click(driver.findElement(By.cssSelector("li.context-menu-icon-quit"))).perform();
+        driver.switchTo().alert().accept();
+        sleepInSeconds(2);
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.context-menu-icon-quit")).isDisplayed());
 
     }
 
     @Test
-    public void TC_11_Authentication_Alert_Pass_To_Url()  {
+    public void TC_08_DragDropHTML4(){
+driver.get("https://automationfc.github.io/kendo-drag-drop/");
 
+WebElement smallCircle = driver.findElement(By.cssSelector("div#draggable"));
+WebElement bigCircle = driver.findElement(By.cssSelector("div#droptarget"));
+
+
+actions.dragAndDrop(smallCircle,bigCircle).perform();
+Assert.assertEquals(bigCircle.getText(),"You did great!");
     }
 
     @Test
-    public void TC_12_Authentication_Alert_Selenium_4x(){
+    public void TC_08_DragDropHTML5_Css(){
 
     }
 
