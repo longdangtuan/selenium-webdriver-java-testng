@@ -86,8 +86,25 @@ driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] input#account
     }
 
     @Test
-    public void TC_04_Click_And_Hold()  {
+    public void TC_03_Fixed_Popup_Not_In_DOM()  {
+    driver.get("https://tiki.vn/");
+    driver.findElement(By.xpath("//span[text()='Tài khoản']")).click();
 
+    // Verify login popup is displayed
+     Assert.assertTrue(driver.findElement(By.cssSelector("div.ReactModal__Content")).isDisplayed());
+
+     driver.findElement(By.cssSelector("p.login-with-email")).click();
+     driver.findElement(By.xpath("//button[text()='Đăng nhập']")).click();
+
+     // Verify displayed text
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='email']/parent::div/following-sibling::span[1]")).getText(),"Email không được để trống");
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='password']/parent::div/following-sibling::span")).getText(),"Mật khẩu không được để trống");
+
+        driver.findElement(By.cssSelector("button.btn-close")).click();
+
+        // Verify popup không hiển thị
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        Assert.assertEquals(driver.findElements(By.cssSelector("div.ReactModal__Content")).size(),0);
     }
 
 
