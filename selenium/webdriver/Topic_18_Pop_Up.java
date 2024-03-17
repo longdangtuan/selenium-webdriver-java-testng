@@ -109,19 +109,21 @@ driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] input#account
 
 
     @Test
-    public void TC_06_Double_Click()  {
+    public void TC_04_Fixed_Popup_Not_In_DOM()  {
+        driver.get("https://www.facebook.com/");
+        driver.findElement(By.xpath("//a[@data-testid='open-registration-form-button']")).click();
 
+        // Verify pop up displays
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Sign Up']/parent::div/parent::div")).isDisplayed());
+
+        driver.findElement(By.xpath("//div[text()='Sign Up']/parent::div/preceding-sibling::img")).click();
+
+        // Verify pop up does not displayed
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        Assert.assertEquals(driver.findElements(By.xpath("//div[text()='Sign Up']/parent::div/parent::div")).size(),0);
     }
 
-    @Test
-    public void TC_08_DragDropHTML4(){
 
-    }
-
-    @Test
-    public void TC_08_DragDropHTML5_Css(){
-       
-    }
 
 
 
