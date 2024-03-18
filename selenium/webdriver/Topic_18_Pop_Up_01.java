@@ -3,7 +3,6 @@ package webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,10 +12,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Topic_18_Pop_Up {
+public class Topic_18_Pop_Up_01 {
     WebDriver driver;
 
     WebDriverWait explicitWait;
@@ -122,6 +119,8 @@ driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] input#account
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Assert.assertEquals(driver.findElements(By.xpath("//div[text()='Sign Up']/parent::div/parent::div")).size(),0);
     }
+
+
 
 
 
