@@ -50,7 +50,6 @@ public class Topic_29_Wait_05_Explicit_Wait_Mixed_Wait {
     }
 
 
-
     @Test
     public void TC_04_Invisible() {
         driver.get("https://automationfc.github.io/dynamic-loading/");
@@ -90,7 +89,7 @@ public class Topic_29_Wait_05_Explicit_Wait_Mixed_Wait {
 
         explicitWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(@class,'rcSelected')]//a[text()='2']"))));
 
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='datesContainer']//span")).getText(),"Tuesday, April 2, 2024");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='datesContainer']//span")).getText(), "Tuesday, April 2, 2024");
 
 
     }
@@ -100,7 +99,6 @@ public class Topic_29_Wait_05_Explicit_Wait_Mixed_Wait {
 
         driver.get("https://gofile.io/welcome");
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/uploadFiless']/button")));
-
 
 
     }
