@@ -12,7 +12,7 @@ public class Topic_06_XPath_Css_Excercise {
     WebDriver driver;
 
     @Test
-    public void Register_01_Emty_Data(){
+    public void Register_01_Emty_Data() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -27,18 +27,18 @@ public class Topic_06_XPath_Css_Excercise {
         driver.findElement(By.xpath("//button[text()='ĐĂNG KÝ' and @type='submit']")).click();
 
         //Verify
-        Assert.assertEquals(driver.findElement(By.id("txtFirstname-error")).getText(),"Vui lòng nhập họ tên");
-        Assert.assertEquals(driver.findElement(By.id("txtEmail-error")).getText(),"Vui lòng nhập email");
-        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(),"Vui lòng nhập lại địa chỉ email");
-        Assert.assertEquals(driver.findElement(By.id("txtPassword-error")).getText(),"Vui lòng nhập mật khẩu");
-        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(),"Vui lòng nhập lại mật khẩu");
-        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(),"Vui lòng nhập số điện thoại.");
+        Assert.assertEquals(driver.findElement(By.id("txtFirstname-error")).getText(), "Vui lòng nhập họ tên");
+        Assert.assertEquals(driver.findElement(By.id("txtEmail-error")).getText(), "Vui lòng nhập email");
+        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(), "Vui lòng nhập lại địa chỉ email");
+        Assert.assertEquals(driver.findElement(By.id("txtPassword-error")).getText(), "Vui lòng nhập mật khẩu");
+        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(), "Vui lòng nhập lại mật khẩu");
+        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Vui lòng nhập số điện thoại.");
 
-driver.quit();
+        driver.quit();
     }
 
     @Test
-    public void Register_02_Invalid_Email_Address(){
+    public void Register_02_Invalid_Email_Address() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -54,12 +54,13 @@ driver.quit();
 
         //Verify
 
-        Assert.assertEquals(driver.findElement(By.id("txtEmail-error")).getText(),"Vui lòng nhập email hợp lệ");
-        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(),"Email nhập lại không đúngTopic_06_XPath_Css_Excercise");
-driver.quit();
+        Assert.assertEquals(driver.findElement(By.id("txtEmail-error")).getText(), "Vui lòng nhập email hợp lệ");
+        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(), "Email nhập lại không đúngTopic_06_XPath_Css_Excercise");
+        driver.quit();
     }
+
     @Test
-    public void Register_03_Invalid_Confirm_Email_Address(){
+    public void Register_03_Invalid_Confirm_Email_Address() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -75,11 +76,12 @@ driver.quit();
 
         //Verify
 
-        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(),"Email nhập lại không đúng");
-driver.quit();
+        Assert.assertEquals(driver.findElement(By.id("txtCEmail-error")).getText(), "Email nhập lại không đúng");
+        driver.quit();
     }
+
     @Test
-    public void Register_04_Password_Invalid_SmallerThan_6characters(){
+    public void Register_04_Password_Invalid_SmallerThan_6characters() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -94,12 +96,13 @@ driver.quit();
         driver.findElement(By.xpath("//button[text()='ĐĂNG KÝ' and @type='submit']")).click();
 
         //Verify
-        Assert.assertEquals(driver.findElement(By.id("txtPassword-error")).getText(),"Mật khẩu phải có ít nhất 6 ký tự");
-        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(),"Mật khẩu phải có ít nhất 6 ký tự");
-driver.quit();
+        Assert.assertEquals(driver.findElement(By.id("txtPassword-error")).getText(), "Mật khẩu phải có ít nhất 6 ký tự");
+        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(), "Mật khẩu phải có ít nhất 6 ký tự");
+        driver.quit();
     }
+
     @Test
-    public void Register_05_Password_Invalid(){
+    public void Register_05_Password_Invalid() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -114,12 +117,12 @@ driver.quit();
         driver.findElement(By.xpath("//button[text()='ĐĂNG KÝ' and @type='submit']")).click();
 
         //Verify
-        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(),"Mật khẩu bạn nhập không khớp");
-driver.quit();
+        Assert.assertEquals(driver.findElement(By.id("txtCPassword-error")).getText(), "Mật khẩu bạn nhập không khớp");
+        driver.quit();
     }
 
     @Test
-    public void Register_06_Invalid_Phone_Number(){
+    public void Register_06_Invalid_Phone_Number() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
@@ -134,7 +137,7 @@ driver.quit();
         driver.findElement(By.xpath("//button[text()='ĐĂNG KÝ' and @type='submit']")).click();
 
         //Verify
-        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(),"Số điện thoại phải từ 10-11 số.");
+        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại phải từ 10-11 số.");
 
         //Action
         driver.findElement(By.id("txtFirstname")).clear();
@@ -154,8 +157,8 @@ driver.quit();
         driver.findElement(By.xpath("//button[text()='ĐĂNG KÝ' and @type='submit']")).click();
 
         //Verify
-        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(),"Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019 - 088 - 03 - 05 - 07 - 08");
-driver.quit();
+        Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019 - 088 - 03 - 05 - 07 - 08");
+        driver.quit();
 
     }
 }

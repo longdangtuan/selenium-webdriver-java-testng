@@ -20,7 +20,7 @@ public class Topic_20_Shadow_DOM {
     JavascriptExecutor javascriptExecutor;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -33,18 +33,17 @@ public class Topic_20_Shadow_DOM {
     }
 
 
-
     @Test
-    public void TC_08_Shadow_DOM()  {
-   driver.get("https://automationfc.github.io/shadow-dom/");
+    public void TC_08_Shadow_DOM() {
+        driver.get("https://automationfc.github.io/shadow-dom/");
 
-       // Shadow DOM 1
+        // Shadow DOM 1
         WebElement shadowHost = driver.findElement(By.cssSelector("div#shadow_host"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
         String someText = shadowRoot.findElement(By.cssSelector("span#shadow_content>span")).getText();
         System.out.println(someText);
-        Assert.assertEquals(someText,"some text");
+        Assert.assertEquals(someText, "some text");
 
         WebElement checkboxShadow = shadowRoot.findElement(By.cssSelector("input[type='checkbox']"));
         Assert.assertFalse(checkboxShadow.isSelected());
@@ -56,17 +55,17 @@ public class Topic_20_Shadow_DOM {
 
         String nestedText = nestedShadowRoot.findElement(By.cssSelector("div#nested_shadow_content>div")).getText();
         System.out.println(nestedText);
-        Assert.assertEquals(nestedText,"nested text");
+        Assert.assertEquals(nestedText, "nested text");
     }
 
     @Test
-    public void TC_09_Shadow_DOM_Popup()  {
+    public void TC_09_Shadow_DOM_Popup() {
         driver.get("https://shopee.vn");
         sleepInSeconds(3);
         WebElement shadowHost = driver.findElement(By.cssSelector("shopee-banner-popup-stateful"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        if (shadowRoot.findElement(By.cssSelector("div.home-popup")).isDisplayed()){ // Step 2: Nếu hiển thị
+        if (shadowRoot.findElement(By.cssSelector("div.home-popup")).isDisplayed()) { // Step 2: Nếu hiển thị
             System.out.println("Shadow DOM is displayed");
             shadowRoot.findElement(By.cssSelector("div.shopee-popup__close-btn")).click();
         }
@@ -76,14 +75,15 @@ public class Topic_20_Shadow_DOM {
         driver.findElement(By.cssSelector("button.shopee-searchbar__search-button")).click();
 
 
-
     }
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {

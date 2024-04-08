@@ -15,8 +15,9 @@ import java.util.Random;
 public class Topic_12_Default_Dropdown {
     WebDriver driver;
     String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password = "Bvb_1909";
+
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://demo.nopcommerce.com/");
@@ -24,7 +25,7 @@ public class Topic_12_Default_Dropdown {
     }
 
     @Test
-    public void TC_01_Register()  {
+    public void TC_01_Register() {
         // Register
 
 
@@ -35,15 +36,15 @@ public class Topic_12_Default_Dropdown {
 
         new Select(driver.findElement(By.name("DateOfBirthDay"))).selectByVisibleText("1");
         // Verify số lượng item trong dropdown
-        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthDay"))).getOptions().size(),32);
+        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthDay"))).getOptions().size(), 32);
         // Verify dropdown là single
         Assert.assertFalse(new Select(driver.findElement(By.name("DateOfBirthDay"))).isMultiple());
         new Select(driver.findElement(By.name("DateOfBirthMonth"))).selectByVisibleText("May");
         // Verify số lượng item trong dropdown
-        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthMonth"))).getOptions().size(),13);
+        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthMonth"))).getOptions().size(), 13);
         new Select(driver.findElement(By.name("DateOfBirthYear"))).selectByVisibleText("1980");
         // Verify số lượng item trong dropdown
-        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthYear"))).getOptions().size(),112);
+        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthYear"))).getOptions().size(), 112);
 
         driver.findElement(By.id("Email")).sendKeys(emailAddress);
         driver.findElement(By.cssSelector("input#Password")).sendKeys(password);
@@ -51,7 +52,7 @@ public class Topic_12_Default_Dropdown {
         driver.findElement(By.id("register-button")).click();
         sleepInSeconds(3);
 
-       Assert.assertEquals(driver.findElement(By.xpath("//div[@class='result']")).getText(),"Your registration completed");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='result']")).getText(), "Your registration completed");
         // Login
         driver.get("https://demo.nopcommerce.com/");
         driver.findElement(By.cssSelector("a.ico-login")).click();
@@ -59,12 +60,12 @@ public class Topic_12_Default_Dropdown {
         driver.findElement(By.cssSelector("input#Password")).sendKeys(password);
         driver.findElement(By.cssSelector("button.login-button")).click();
         sleepInSeconds(3);
-       // Verify
-       driver.findElement(By.cssSelector("a.ico-account")).click();
-       sleepInSeconds(2);
+        // Verify
+        driver.findElement(By.cssSelector("a.ico-account")).click();
+        sleepInSeconds(2);
         Assert.assertEquals(driver.findElement(By.cssSelector("input#FirstName")).getAttribute("value"), firstName);
         Assert.assertEquals(driver.findElement(By.cssSelector("input#LastName")).getAttribute("value"), lastName);
-        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthDay"))).getFirstSelectedOption().getText(),"1");
+        Assert.assertEquals(new Select(driver.findElement(By.name("DateOfBirthDay"))).getFirstSelectedOption().getText(), "1");
 
 
         Assert.assertEquals(driver.findElement(By.cssSelector("input#Email")).getAttribute("value"), emailAddress);
@@ -73,9 +74,11 @@ public class Topic_12_Default_Dropdown {
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -83,8 +86,9 @@ public class Topic_12_Default_Dropdown {
         }
 
     }
-    public String getEmailAddress(){
+
+    public String getEmailAddress() {
         Random random = new Random();
-        return  "Bvb" + random.nextInt() + "@gmail.com";
+        return "Bvb" + random.nextInt() + "@gmail.com";
     }
 }

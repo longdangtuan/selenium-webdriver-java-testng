@@ -14,36 +14,36 @@ public class Topic_10_Exercise_Element {
     WebDriver driver;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
     @Test
-    public void TC_01_isDisplayed()  {
+    public void TC_01_isDisplayed() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
-        if (driver.findElement(By.name("user_email")).isDisplayed()){
+        if (driver.findElement(By.name("user_email")).isDisplayed()) {
             driver.findElement(By.name("user_email")).sendKeys("Automation Testing");
             System.out.println("Email is displayed");
         } else {
             System.out.println("Email is not displayed");
         }
 
-        if (driver.findElement(By.xpath("//input[@id='under_18']")).isDisplayed()){
+        if (driver.findElement(By.xpath("//input[@id='under_18']")).isDisplayed()) {
             driver.findElement(By.xpath("//input[@id='under_18']")).click();
             System.out.println("Under 18 button is displayed");
         } else {
             System.out.println("Under 18 button is not displayed");
         }
 
-        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isDisplayed()){
+        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isDisplayed()) {
             driver.findElement(By.xpath("//textarea[@id='edu']")).sendKeys("Automation Testing");
             System.out.println("Education is displayed");
         } else {
             System.out.println("Education is not displayed");
         }
 
-        if (driver.findElement(By.xpath("//h5[text()='Name: User1']")).isDisplayed()){
+        if (driver.findElement(By.xpath("//h5[text()='Name: User1']")).isDisplayed()) {
             System.out.println("User1 is displayed");
         } else {
             System.out.println("User1 is not displayed");
@@ -53,81 +53,81 @@ public class Topic_10_Exercise_Element {
 
 
     @Test
-    public void TC_02_isEnabled(){
+    public void TC_02_isEnabled() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
-        if (driver.findElement(By.name("user_email")).isEnabled()){
+        if (driver.findElement(By.name("user_email")).isEnabled()) {
             System.out.println("Email is enabled");
         } else {
             System.out.println("Email is disabled");
         }
 
-        if (driver.findElement(By.xpath("//input[@id='under_18']")).isEnabled()){
+        if (driver.findElement(By.xpath("//input[@id='under_18']")).isEnabled()) {
             System.out.println("Under 18 button is enabled");
         } else {
             System.out.println("Under 18 button is disabled");
         }
 
-        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isEnabled()){
+        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isEnabled()) {
             System.out.println("Education is enabled");
         } else {
             System.out.println("Education is disabled");
         }
 
-        if (driver.findElement(By.name("user_job1")).isEnabled()){
+        if (driver.findElement(By.name("user_job1")).isEnabled()) {
             System.out.println("Job Role 1 is enabled");
         } else {
             System.out.println("Job Role 1 is disabled");
         }
 
-        if (driver.findElement(By.name("user_job2")).isEnabled()){
+        if (driver.findElement(By.name("user_job2")).isEnabled()) {
             System.out.println("Job Role 2 is enabled");
         } else {
             System.out.println("Job Role 2 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#development")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#development")).isEnabled()) {
             System.out.println("Development Interest is enabled");
         } else {
             System.out.println("Development Interest is disabled");
         }
 
-        if (driver.findElement(By.name("slider-1")).isEnabled()){
+        if (driver.findElement(By.name("slider-1")).isEnabled()) {
             System.out.println("Slider 01 is enabled");
         } else {
             System.out.println("Slider 01 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#disable_password")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#disable_password")).isEnabled()) {
             System.out.println("Password is enabled");
         } else {
             System.out.println("Password is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#radio-disabled")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#radio-disabled")).isEnabled()) {
             System.out.println("Radio button is enabled");
         } else {
             System.out.println("Radio button is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("textarea#bio")).isEnabled()){
+        if (driver.findElement(By.cssSelector("textarea#bio")).isEnabled()) {
             System.out.println("Bio is enabled");
         } else {
             System.out.println("Bio is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("select#job3")).isEnabled()){
+        if (driver.findElement(By.cssSelector("select#job3")).isEnabled()) {
             System.out.println("Job 03 is enabled");
         } else {
             System.out.println("Job 03 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#check-disbaled")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#check-disbaled")).isEnabled()) {
             System.out.println("Interest Checkbox is enabled");
         } else {
             System.out.println("Interest Checkbox is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#slider-2")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#slider-2")).isEnabled()) {
             System.out.println("Slider 02 is enabled");
         } else {
             System.out.println("Slider 02 is disabled");
@@ -135,7 +135,7 @@ public class Topic_10_Exercise_Element {
     }
 
     @Test
-    public void TC_03_isSelected(){
+    public void TC_03_isSelected() {
 
         driver.get("https://automationfc.github.io/basic-form/index.html");
         driver.findElement(By.id("under_18")).click();
@@ -150,7 +150,7 @@ public class Topic_10_Exercise_Element {
     }
 
     @Test
-    public void TC_04_MailChimp(){
+    public void TC_04_MailChimp() {
         driver.get("https://login.mailchimp.com/signup/");
         driver.findElement(By.id("email")).sendKeys("Reusmarco0706@gmail.com");
 
@@ -176,11 +176,12 @@ public class Topic_10_Exercise_Element {
     }
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {

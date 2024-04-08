@@ -25,12 +25,11 @@ public class Topic_28_Wait_04_Static_Wait {
     FluentWait fluentWait;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
 
 
     }
-
 
 
     @Test
@@ -45,9 +44,11 @@ public class Topic_28_Wait_04_Static_Wait {
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -56,8 +57,8 @@ public class Topic_28_Wait_04_Static_Wait {
 
     }
 
-    public String getDateTimeNow(){
-        Date date =  new Date();
+    public String getDateTimeNow() {
+        Date date = new Date();
         return date.toString();
     }
 

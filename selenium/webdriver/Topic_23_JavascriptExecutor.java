@@ -21,7 +21,7 @@ public class Topic_23_JavascriptExecutor {
     JavascriptExecutor jsExecutor;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -34,15 +34,15 @@ public class Topic_23_JavascriptExecutor {
     }
 
 
-
     @Test
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -95,7 +95,7 @@ public class Topic_23_JavascriptExecutor {
     }
 
     public void setAttributeInDOM(String locator, String attributeName, String attributeValue) {
-        jsExecutor.executeScript("arguments[0].setAttribute('" + attributeName + "', '" + attributeValue +"');", getElement(locator));
+        jsExecutor.executeScript("arguments[0].setAttribute('" + attributeName + "', '" + attributeValue + "');", getElement(locator));
     }
 
     public void removeAttributeInDOM(String locator, String attributeRemove) {

@@ -12,7 +12,7 @@ public class Topic_08_WebElement_Commands {
     WebDriver driver;
 
     @Test
-    public void TC_01_Element(){
+    public void TC_01_Element() {
         // HTML Element: Textbox/ TextArea/Dropdown/Checkbox/Link/Button...
         // Tifm chưa tương tác lên
         driver.findElement(By.id(""));
@@ -39,9 +39,9 @@ public class Topic_08_WebElement_Commands {
         List<WebElement> textboxes = driver.findElements(By.cssSelector("")); // Java Generic: ràng buộc kiểu dữ liệu
 
         // Verify 1 checkbox/ radio/ dropdown đã được chọn hay chưa
-       Assert.assertTrue(driver.findElement(By.id("")).isSelected());//*
+        Assert.assertTrue(driver.findElement(By.id("")).isSelected());//*
 
-       // Dùng để verify 1 element bất kì có hiển thị hay không
+        // Dùng để verify 1 element bất kì có hiển thị hay không
         Assert.assertTrue(driver.findElement(By.id("")).isDisplayed());//**
 
         // Dùng để verify 1 element có được thao tác lên hay không (không phải read-only)
@@ -91,7 +91,6 @@ public class Topic_08_WebElement_Commands {
         ArrayList name = new ArrayList();
         name.add("a");
         name.add(16);
-
 
 
     }

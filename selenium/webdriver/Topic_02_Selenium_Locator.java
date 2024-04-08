@@ -13,7 +13,6 @@ public class Topic_02_Selenium_Locator {
     WebDriver driver;
 
 
-
     @Test
     public void TC_01_ID() {
         // 8 loại locator
@@ -34,6 +33,7 @@ public class Topic_02_Selenium_Locator {
         driver.findElement(By.id("FirstName")).sendKeys("Jake");
 
     }
+
     @Test
     public void TC_02_Class() {
         driver = new FirefoxDriver();
@@ -49,6 +49,7 @@ public class Topic_02_Selenium_Locator {
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
         driver.findElement(By.name("generator"));
     }
+
     @Test
     public void TC_04_TagName() {
         driver = new FirefoxDriver();
@@ -56,6 +57,7 @@ public class Topic_02_Selenium_Locator {
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
         driver.findElements(By.tagName("input"));
     }
+
     @Test
     public void TC_05_LinkText() {
         // do chinh xac tuyet doi
@@ -64,6 +66,7 @@ public class Topic_02_Selenium_Locator {
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
         driver.findElement(By.linkText("Privacy notice"));
     }
+
     @Test
     public void TC_06_Partial_LinkText() {
 
@@ -72,6 +75,7 @@ public class Topic_02_Selenium_Locator {
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
         driver.findElement(By.partialLinkText("Conditions"));
     }
+
     @Test
     public void TC_07_Css() {
 
@@ -82,12 +86,12 @@ public class Topic_02_Selenium_Locator {
         driver.findElement(By.cssSelector("input[id='LastName']"));
         driver.findElement(By.cssSelector("input#FirstName"));
         driver.findElement(By.cssSelector("#FirstName"));
-       // Css vs Class
+        // Css vs Class
         driver.findElement(By.cssSelector("div[class='page-title"));
         driver.findElement(By.cssSelector("div.page-title"));
         driver.findElement(By.cssSelector(".page-title"));
-       // Css vs Name
-                driver.findElement(By.cssSelector("input[name='LastName']"));
+        // Css vs Name
+        driver.findElement(By.cssSelector("input[name='LastName']"));
         // Css vs tagname
         driver.findElement(By.cssSelector("input"));
         // Css vs link
@@ -95,6 +99,7 @@ public class Topic_02_Selenium_Locator {
         // Css vs partial link
         //driver.findElement(By.cssSelector("a[href*='/viewedproducts']"));
     }
+
     @Test
     public void TC_08_XPath() {
 
@@ -107,8 +112,8 @@ public class Topic_02_Selenium_Locator {
         // Css vs Class
         driver.findElement(By.xpath("//div[@class='page-title']"));
 
-                // Css vs Name
-                driver.findElement(By.xpath("//input[@name='LastName']"));
+        // Css vs Name
+        driver.findElement(By.xpath("//input[@name='LastName']"));
         // Css vs tagname
         driver.findElement(By.xpath("//input"));
         // Css vs link

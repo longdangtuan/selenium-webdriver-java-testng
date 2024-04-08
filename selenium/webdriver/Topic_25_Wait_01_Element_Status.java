@@ -23,11 +23,8 @@ public class Topic_25_Wait_01_Element_Status {
     By reconfirmEmailTextbox = By.cssSelector("input[name='reg_email_confirmation__']");
 
 
-
-
-
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -37,14 +34,13 @@ public class Topic_25_Wait_01_Element_Status {
     }
 
 
-
     @Test
-    public void TC_01_Visible()  {
-driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']")).click();
-sleepInSeconds(3);
+    public void TC_01_Visible() {
+        driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']")).click();
+        sleepInSeconds(3);
 
-driver.findElement(By.cssSelector("input[name='reg_email__']")).sendKeys("reusmarco0706@gmail.com");
-sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input[name='reg_email__']")).sendKeys("reusmarco0706@gmail.com");
+        sleepInSeconds(3);
 
 // Tại bước này thì Confirm Email Textbox đang visible/displayed
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(reconfirmEmailTextbox));
@@ -55,7 +51,7 @@ sleepInSeconds(3);
     }
 
     @Test
-    public void TC_02_Invisible()  {
+    public void TC_02_Invisible() {
 // Element không xuất hiện trên UI và vẫn có trong cây HTML
         driver.findElement(By.cssSelector("input[name='reg_email__']")).clear();
 
@@ -73,12 +69,12 @@ sleepInSeconds(3);
 
         // Kiểm tra element không hiển thị
         // Chạy lâu -> step bị failed vì không tìm thấy element trong DOM ở bước find element
-       // Assert.assertFalse(driver.findElement(reconfirmEmailTextbox).isDisplayed());
+        // Assert.assertFalse(driver.findElement(reconfirmEmailTextbox).isDisplayed());
 
     }
 
     @Test
-    public void TC_03_Presence()  {
+    public void TC_03_Presence() {
         driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']")).click();
         sleepInSeconds(3);
 
@@ -95,11 +91,10 @@ sleepInSeconds(3);
         explicitWait.until(ExpectedConditions.presenceOfElementLocated(reconfirmEmailTextbox));
 
 
-
     }
 
     @Test
-    public void TC_04_Staleness()  {
+    public void TC_04_Staleness() {
         driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']")).click();
         sleepInSeconds(3);
 
@@ -116,11 +111,12 @@ sleepInSeconds(3);
     }
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -129,13 +125,13 @@ sleepInSeconds(3);
 
     }
 
-    public void switchToWindowByID (String parentID) {
+    public void switchToWindowByID(String parentID) {
         // Lấu ra ID của window/tab đang có
         Set<String> allIDs = driver.getWindowHandles();
 
         // Dùng vòng lặp duyệt qua từng id
-        for(String id : allIDs){
-            if(!id.equals(parentID)){
+        for (String id : allIDs) {
+            if (!id.equals(parentID)) {
                 // Nếu ID nào khác parentID thì switch vào
                 driver.switchTo().window(id);
                 break;
@@ -143,33 +139,33 @@ sleepInSeconds(3);
         }
     }
 
-    public void switchToWindowByTitle (String expectedTitle){
+    public void switchToWindowByTitle(String expectedTitle) {
         // lấy tất cả id
         Set<String> allIDs = driver.getWindowHandles();
 
         // DFUNGF VÒNG LẶP duyệt qua set ID
-        for (String id : allIDs){
+        for (String id : allIDs) {
             // cho switch vào từng id trước
             driver.switchTo().window(id);
             sleepInSeconds(3);
             // lấy ra title của window hiện tại
             String actualTitle = driver.getTitle();
-            if(actualTitle.equals(expectedTitle)){
+            if (actualTitle.equals(expectedTitle)) {
                 break;
             }
         }
     }
 
-    public boolean closeAllWindowsWithoutParent (String parentID){
+    public boolean closeAllWindowsWithoutParent(String parentID) {
         Set<String> allWindows = driver.getWindowHandles();
-        for (String runWindows : allWindows){
-            if(!runWindows.equals(parentID)){
+        for (String runWindows : allWindows) {
+            if (!runWindows.equals(parentID)) {
                 driver.switchTo().window(runWindows);
                 driver.close();
             }
         }
         driver.switchTo().window(parentID);
-        if(driver.getWindowHandles().size() == 1)
+        if (driver.getWindowHandles().size() == 1)
             return true;
         else
             return false;

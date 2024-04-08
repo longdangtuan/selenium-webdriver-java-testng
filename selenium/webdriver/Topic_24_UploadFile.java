@@ -27,7 +27,6 @@ public class Topic_24_UploadFile {
     String character = Platform.getCurrent().is(Platform.WINDOWS) ? "\\" : "/";
 
 
-
     String image1Name = "back thickness, bicep.jpg";
 
     String image2Name = "Forearm, calves, hamstrings.jpg";
@@ -37,7 +36,7 @@ public class Topic_24_UploadFile {
     String image2FilePath = projectPath + File.separator + "uploadFiles" + File.separator + image2Name;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -50,24 +49,22 @@ public class Topic_24_UploadFile {
     }
 
 
-
     @Test
-    public void TC_01_Upload_Files()  {
+    public void TC_01_Upload_Files() {
         driver.get("https://blueimp.github.io/jQuery-File-Upload/");
         By uploadBy = By.cssSelector("input[name='files[]']");
 
         driver.findElement(uploadBy).sendKeys(image1FilePath + "\n" + image2FilePath);
 
 
-
         // Verify file is loaded
-        Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and text()='"+ image1Name + "']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and text()='"+ image2Name + "']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and text()='" + image1Name + "']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and text()='" + image2Name + "']")).isDisplayed());
 
-        List <WebElement> startButtons = driver.findElements(By.cssSelector("td>button.start"));
+        List<WebElement> startButtons = driver.findElements(By.cssSelector("td>button.start"));
 
         // for each
-        for (WebElement button : startButtons){
+        for (WebElement button : startButtons) {
             button.click();
             sleepInSeconds(2);
         }
@@ -76,63 +73,18 @@ public class Topic_24_UploadFile {
     }
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-    }
-
-    public void switchToWindowByID (String parentID) {
-        // Lấu ra ID của window/tab đang có
-        Set<String> allIDs = driver.getWindowHandles();
-
-        // Dùng vòng lặp duyệt qua từng id
-        for(String id : allIDs){
-            if(!id.equals(parentID)){
-                // Nếu ID nào khác parentID thì switch vào
-                driver.switchTo().window(id);
-                break;
-            }
-        }
-    }
-
-    public void switchToWindowByTitle (String expectedTitle){
-        // lấy tất cả id
-        Set<String> allIDs = driver.getWindowHandles();
-
-        // DFUNGF VÒNG LẶP duyệt qua set ID
-        for (String id : allIDs){
-            // cho switch vào từng id trước
-            driver.switchTo().window(id);
-            sleepInSeconds(3);
-            // lấy ra title của window hiện tại
-            String actualTitle = driver.getTitle();
-            if(actualTitle.equals(expectedTitle)){
-                break;
-            }
-        }
-    }
-
-    public boolean closeAllWindowsWithoutParent (String parentID){
-        Set<String> allWindows = driver.getWindowHandles();
-        for (String runWindows : allWindows){
-            if(!runWindows.equals(parentID)){
-                driver.switchTo().window(runWindows);
-                driver.close();
-            }
-        }
-        driver.switchTo().window(parentID);
-        if(driver.getWindowHandles().size() == 1)
-            return true;
-        else
-            return false;
     }
 
 

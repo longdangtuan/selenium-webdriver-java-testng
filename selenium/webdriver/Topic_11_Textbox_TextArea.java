@@ -17,17 +17,17 @@ public class Topic_11_Textbox_TextArea {
     WebDriver driver;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
     @Test
-    public void TC_01_Handle_Textbox_TextArea()  {
+    public void TC_01_Handle_Textbox_TextArea() {
         driver.get("http://live.techpanda.org");
         driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
         sleepInSeconds(3);
-        String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password ="Bvb@1909";
+        String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password = "Bvb@1909";
         String fullName = firstName + " " + lastName;
 
         // Register
@@ -39,8 +39,8 @@ public class Topic_11_Textbox_TextArea {
         driver.findElement(By.id("confirmation")).sendKeys(password);
         driver.findElement(By.xpath("//button[@title='Register']")).click();
 
-        Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg span")).getText(),"Thank you for registering with Main Website Store.");
-        Assert.assertEquals(driver.findElement(By.cssSelector("div.welcome-msg strong")).getText(),"Hello, " + fullName +"!");
+        Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg span")).getText(), "Thank you for registering with Main Website Store.");
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.welcome-msg strong")).getText(), "Hello, " + fullName + "!");
 
         String contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
         Assert.assertTrue(contactInfo.contains(fullName));
@@ -63,86 +63,85 @@ public class Topic_11_Textbox_TextArea {
         // driver.findElement(By.xpath("//h1[contains(text(),'Login or Create an Account')]")).isDisplayed();
 
 
-
     }
 
 
     @Test
-    public void TC_02_isEnabled(){
+    public void TC_02_isEnabled() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
-        if (driver.findElement(By.name("user_email")).isEnabled()){
+        if (driver.findElement(By.name("user_email")).isEnabled()) {
             System.out.println("Email is enabled");
         } else {
             System.out.println("Email is disabled");
         }
 
-        if (driver.findElement(By.xpath("//input[@id='under_18']")).isEnabled()){
+        if (driver.findElement(By.xpath("//input[@id='under_18']")).isEnabled()) {
             System.out.println("Under 18 button is enabled");
         } else {
             System.out.println("Under 18 button is disabled");
         }
 
-        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isEnabled()){
+        if (driver.findElement(By.xpath("//textarea[@id='edu']")).isEnabled()) {
             System.out.println("Education is enabled");
         } else {
             System.out.println("Education is disabled");
         }
 
-        if (driver.findElement(By.name("user_job1")).isEnabled()){
+        if (driver.findElement(By.name("user_job1")).isEnabled()) {
             System.out.println("Job Role 1 is enabled");
         } else {
             System.out.println("Job Role 1 is disabled");
         }
 
-        if (driver.findElement(By.name("user_job2")).isEnabled()){
+        if (driver.findElement(By.name("user_job2")).isEnabled()) {
             System.out.println("Job Role 2 is enabled");
         } else {
             System.out.println("Job Role 2 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#development")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#development")).isEnabled()) {
             System.out.println("Development Interest is enabled");
         } else {
             System.out.println("Development Interest is disabled");
         }
 
-        if (driver.findElement(By.name("slider-1")).isEnabled()){
+        if (driver.findElement(By.name("slider-1")).isEnabled()) {
             System.out.println("Slider 01 is enabled");
         } else {
             System.out.println("Slider 01 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#disable_password")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#disable_password")).isEnabled()) {
             System.out.println("Password is enabled");
         } else {
             System.out.println("Password is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#radio-disabled")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#radio-disabled")).isEnabled()) {
             System.out.println("Radio button is enabled");
         } else {
             System.out.println("Radio button is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("textarea#bio")).isEnabled()){
+        if (driver.findElement(By.cssSelector("textarea#bio")).isEnabled()) {
             System.out.println("Bio is enabled");
         } else {
             System.out.println("Bio is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("select#job3")).isEnabled()){
+        if (driver.findElement(By.cssSelector("select#job3")).isEnabled()) {
             System.out.println("Job 03 is enabled");
         } else {
             System.out.println("Job 03 is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#check-disbaled")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#check-disbaled")).isEnabled()) {
             System.out.println("Interest Checkbox is enabled");
         } else {
             System.out.println("Interest Checkbox is disabled");
         }
 
-        if (driver.findElement(By.cssSelector("input#slider-2")).isEnabled()){
+        if (driver.findElement(By.cssSelector("input#slider-2")).isEnabled()) {
             System.out.println("Slider 02 is enabled");
         } else {
             System.out.println("Slider 02 is disabled");
@@ -150,7 +149,7 @@ public class Topic_11_Textbox_TextArea {
     }
 
     @Test
-    public void TC_03_isSelected(){
+    public void TC_03_isSelected() {
 
         driver.get("https://automationfc.github.io/basic-form/index.html");
         driver.findElement(By.id("under_18")).click();
@@ -165,7 +164,7 @@ public class Topic_11_Textbox_TextArea {
     }
 
     @Test
-    public void TC_04_MailChimp(){
+    public void TC_04_MailChimp() {
         driver.get("https://login.mailchimp.com/signup/");
         driver.findElement(By.id("email")).sendKeys("Reusmarco0706@gmail.com");
 
@@ -191,11 +190,12 @@ public class Topic_11_Textbox_TextArea {
     }
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -203,8 +203,9 @@ public class Topic_11_Textbox_TextArea {
         }
 
     }
-    public String getEmailAddress(){
+
+    public String getEmailAddress() {
         Random random = new Random();
-        return  "Bvb" + random.nextInt() + "@gmail.com";
+        return "Bvb" + random.nextInt() + "@gmail.com";
     }
 }

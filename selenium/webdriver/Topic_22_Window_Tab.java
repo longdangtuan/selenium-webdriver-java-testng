@@ -24,7 +24,7 @@ public class Topic_22_Window_Tab {
     JavascriptExecutor javascriptExecutor;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -37,9 +37,8 @@ public class Topic_22_Window_Tab {
     }
 
 
-
     @Test
-    public void TC_13_Window_Tab()  {
+    public void TC_13_Window_Tab() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
 
         // lấy ra ID của tab hiện tại
@@ -51,13 +50,13 @@ public class Topic_22_Window_Tab {
         driver.findElement(By.cssSelector("textarea[name='q']")).sendKeys("Racules");
 
         // Kiểm tra title của window mới
-        Assert.assertEquals(driver.getTitle(),"Google");
+        Assert.assertEquals(driver.getTitle(), "Google");
 
         // Switch về parent window
         String googleID = driver.getWindowHandle();
         sleepInSeconds(3);
         switchToWindowByID(googleID);
-        Assert.assertEquals(driver.getTitle(),"Selenium WebDriver");
+        Assert.assertEquals(driver.getTitle(), "Selenium WebDriver");
 
         // Click Facebook
         driver.findElement(By.xpath("//a[text()='FACEBOOK']")).click();
@@ -67,9 +66,9 @@ public class Topic_22_Window_Tab {
         sleepInSeconds(3);
         String facebookID = driver.getWindowHandle();
         // kiểm tra title window mới
-        Assert.assertEquals(driver.getTitle(),"Facebook – log in or sign up");
+        Assert.assertEquals(driver.getTitle(), "Facebook – log in or sign up");
 
-       // Switch ve parent window
+        // Switch ve parent window
         switchToWindowByID(facebookID);
         sleepInSeconds(3);
         driver.findElement(By.xpath("//a[text()='TIKI']")).click();
@@ -80,7 +79,7 @@ public class Topic_22_Window_Tab {
         String tikiID = driver.getWindowHandle();
 
         // Kiểm tra title window mới
-        Assert.assertEquals(driver.getTitle(),"Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh");
+        Assert.assertEquals(driver.getTitle(), "Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh");
 
         closeAllWindowsWithoutParent(basicformID);
         sleepInSeconds(3);
@@ -88,7 +87,7 @@ public class Topic_22_Window_Tab {
     }
 
     @Test
-    public void TC_14_Window_Tab()  {
+    public void TC_14_Window_Tab() {
         driver.get("https://skills.kynaenglish.vn/");
         // lấy ra id của tab hiện tại
         String kynaID = driver.getWindowHandle();
@@ -99,13 +98,13 @@ public class Topic_22_Window_Tab {
         String kynaFacebookID = driver.getWindowHandle();
 
         // Kiểm tra đã switch  thành công
-        Assert.assertEquals(driver.getTitle(),"Kyna.vn | Ho Chi Minh City | Facebook");
+        Assert.assertEquals(driver.getTitle(), "Kyna.vn | Ho Chi Minh City | Facebook");
 
         //Switch về tab skill kyna
         switchToWindowByTitle("Kyna.vn - Học online cùng chuyên gia");
 
         // Kiem tra da swtich thafnh cong
-        Assert.assertEquals(driver.getTitle(),"Kyna.vn - Học online cùng chuyên gia");
+        Assert.assertEquals(driver.getTitle(), "Kyna.vn - Học online cùng chuyên gia");
 
         driver.findElement(By.xpath("//div[@id='k-footer']//img[@alt='youtube']")).click();
         String kynaYoutubeID = driver.getWindowHandle();
@@ -114,7 +113,7 @@ public class Topic_22_Window_Tab {
 
 
         // Kiểm tra đã switch thành công
-        Assert.assertEquals(driver.getTitle(),"Kyna.vn - YouTube");
+        Assert.assertEquals(driver.getTitle(), "Kyna.vn - YouTube");
 
         // Đóng tất cả các tab trừ tab kyna
         closeAllWindowsWithoutParent(kynaID);
@@ -124,7 +123,7 @@ public class Topic_22_Window_Tab {
     }
 
     @Test
-    public void TC_15_Window_Tab()  {
+    public void TC_15_Window_Tab() {
         driver.get("http://live.techpanda.org/");
         // lấy ra id của tab hiện tại
         String livetechpandaID = driver.getWindowHandle();
@@ -136,16 +135,16 @@ public class Topic_22_Window_Tab {
         String livetechpandamobileID = driver.getWindowHandle();
 
         // Kiểm tra đã switch  thành công
-        Assert.assertEquals(driver.getTitle(),"Mobile");
+        Assert.assertEquals(driver.getTitle(), "Mobile");
 
         // Thêm sony xperia vào compare
         driver.findElement(By.xpath("//a[@title='Xperia']/following-sibling::div[@class='product-info']//a[text()='Add to Compare']")).click();
-        Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText(),"The product Sony Xperia has been added to comparison list.");
+        Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText(), "The product Sony Xperia has been added to comparison list.");
 
     }
 
     @Test
-    public void TC_16_Window_Tab()  {
+    public void TC_16_Window_Tab() {
         driver.get("https://dictionary.cambridge.org/vi/");
         // lấy ra id của tab hiện tại
         String dictionaryID = driver.getWindowHandle();
@@ -155,21 +154,20 @@ public class Topic_22_Window_Tab {
         switchToWindowByID(dictionaryID);
 
 
-
         // Kiểm tra đã switch  thành công
-        Assert.assertEquals(driver.getTitle(),"Login");
+        Assert.assertEquals(driver.getTitle(), "Login");
 
         driver.findElement(By.xpath("//input[@value='Log in']")).click();
 
         // Verify error message
-        Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Email *']/following-sibling::span")).getText(),"This field is required");
-        Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Password *']/following-sibling::span")).getText(),"This field is required");
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Email *']/following-sibling::span")).getText(), "This field is required");
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Password *']/following-sibling::span")).getText(), "This field is required");
 
         // Close window
         closeAllWindowsWithoutParent(dictionaryID);
 
         switchToWindowByTitle("Cambridge Dictionary | Từ điển tiếng Anh, Bản dịch & Từ điển từ đồng nghĩa");
-        Assert.assertEquals(driver.getTitle(),"Cambridge Dictionary | Từ điển tiếng Anh, Bản dịch & Từ điển từ đồng nghĩa");
+        Assert.assertEquals(driver.getTitle(), "Cambridge Dictionary | Từ điển tiếng Anh, Bản dịch & Từ điển từ đồng nghĩa");
 
         // Thêm từ khóa vào thanh search
         driver.findElement(By.cssSelector("input#searchword")).sendKeys("automation");
@@ -181,15 +179,17 @@ public class Topic_22_Window_Tab {
     }
 
     @Test
-    public void TC_17_Selenium_4x(){
+    public void TC_17_Selenium_4x() {
 
     }
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -198,13 +198,13 @@ public class Topic_22_Window_Tab {
 
     }
 
-    public void switchToWindowByID (String parentID) {
+    public void switchToWindowByID(String parentID) {
         // Lấu ra ID của window/tab đang có
         Set<String> allIDs = driver.getWindowHandles();
 
         // Dùng vòng lặp duyệt qua từng id
-        for(String id : allIDs){
-            if(!id.equals(parentID)){
+        for (String id : allIDs) {
+            if (!id.equals(parentID)) {
                 // Nếu ID nào khác parentID thì switch vào
                 driver.switchTo().window(id);
                 break;
@@ -212,33 +212,33 @@ public class Topic_22_Window_Tab {
         }
     }
 
-    public void switchToWindowByTitle (String expectedTitle){
+    public void switchToWindowByTitle(String expectedTitle) {
         // lấy tất cả id
         Set<String> allIDs = driver.getWindowHandles();
 
         // DFUNGF VÒNG LẶP duyệt qua set ID
-        for (String id : allIDs){
+        for (String id : allIDs) {
             // cho switch vào từng id trước
             driver.switchTo().window(id);
             sleepInSeconds(3);
             // lấy ra title của window hiện tại
             String actualTitle = driver.getTitle();
-            if(actualTitle.equals(expectedTitle)){
+            if (actualTitle.equals(expectedTitle)) {
                 break;
             }
         }
     }
 
-    public boolean closeAllWindowsWithoutParent (String parentID){
+    public boolean closeAllWindowsWithoutParent(String parentID) {
         Set<String> allWindows = driver.getWindowHandles();
-        for (String runWindows : allWindows){
-            if(!runWindows.equals(parentID)){
+        for (String runWindows : allWindows) {
+            if (!runWindows.equals(parentID)) {
                 driver.switchTo().window(runWindows);
                 driver.close();
             }
         }
         driver.switchTo().window(parentID);
-        if(driver.getWindowHandles().size() == 1)
+        if (driver.getWindowHandles().size() == 1)
             return true;
         else
             return false;

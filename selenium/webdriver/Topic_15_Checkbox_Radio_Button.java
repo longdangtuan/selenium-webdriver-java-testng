@@ -20,14 +20,15 @@ import java.util.Random;
 
 public class Topic_15_Checkbox_Radio_Button {
     WebDriver driver;
-   // Tường minh: trạng thái cụ thể cho element
+    // Tường minh: trạng thái cụ thể cho element
     // Visible//Invisible/Presence/Number/Clickable/...
     WebDriverWait explicitWait;
 
 
     String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password = "Bvb_1909";
+
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -39,7 +40,7 @@ public class Topic_15_Checkbox_Radio_Button {
     }
 
     @Test
-    public void TC_01_Fahasa_Button()  {
+    public void TC_01_Fahasa_Button() {
         driver.get("https://www.fahasa.com/customer/account/create");
         driver.findElement(By.cssSelector("li.popup-login-tab-login")).click();
 
@@ -50,7 +51,7 @@ public class Topic_15_Checkbox_Radio_Button {
 
         // Verify login button background
 
-        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(),"#000000");
+        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(), "#000000");
 
         // Nhập email/password
         driver.findElement(By.cssSelector("input#login_username")).sendKeys(emailAddress);
@@ -61,33 +62,33 @@ public class Topic_15_Checkbox_Radio_Button {
 
         //Verfiy đăng nhập button background
         System.out.println(loginButton.getCssValue("background-color"));
-        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(),"#c92127");
-
+        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(), "#c92127");
 
 
     }
+
     @Test
-    public void TC_02_Select_All_Checkboxes_Select_One_In_All()  {
+    public void TC_02_Select_All_Checkboxes_Select_One_In_All() {
         driver.get("https://automationfc.github.io/multiple-fields/");
-        List <WebElement> allCheckboxes = driver.findElements(By.cssSelector("div.form-single-column input[type='checkbox']"));
+        List<WebElement> allCheckboxes = driver.findElements(By.cssSelector("div.form-single-column input[type='checkbox']"));
         // Chọn hết các checkbox trong màn hình
-        for (WebElement checkbox: allCheckboxes){
-            if (!checkbox.isSelected()){
+        for (WebElement checkbox : allCheckboxes) {
+            if (!checkbox.isSelected()) {
                 checkbox.click();
 
             }
         }
 
         // Verify hết taast cả các checkbox
-        for (WebElement checkbox: allCheckboxes){
+        for (WebElement checkbox : allCheckboxes) {
             Assert.assertTrue(checkbox.isSelected());
         }
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
         allCheckboxes = driver.findElements(By.cssSelector("div.form-single-column input[type='checkbox']"));
         // Chọn 1 checkbox/radio trong các checkbox
-        for (WebElement checkbox: allCheckboxes){
-            if (checkbox.getAttribute("value").equals("Heart Attack") && !checkbox.isSelected()){
+        for (WebElement checkbox : allCheckboxes) {
+            if (checkbox.getAttribute("value").equals("Heart Attack") && !checkbox.isSelected()) {
                 checkbox.click();
                 sleepInSeconds(1);
             }
@@ -97,31 +98,30 @@ public class Topic_15_Checkbox_Radio_Button {
     }
 
     @Test
-    public void TC_06_Custom_Checkbox_Radio_Button()  {
-    driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
-    // Verify button is not selected
+    public void TC_06_Custom_Checkbox_Radio_Button() {
+        driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+        // Verify button is not selected
         By canThoRadio = By.xpath("//div[@aria-label='Cần Thơ']");
-       Assert.assertEquals(driver.findElement(canThoRadio).getAttribute("aria-checked"),"false");
-       Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Cần Thơ' and @aria-checked ='false']")).isDisplayed());
+        Assert.assertEquals(driver.findElement(canThoRadio).getAttribute("aria-checked"), "false");
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Cần Thơ' and @aria-checked ='false']")).isDisplayed());
 
-    // Click button
-       driver.findElement(canThoRadio).click();
+        // Click button
+        driver.findElement(canThoRadio).click();
 
-         //Verify button is selected
-        Assert.assertEquals(driver.findElement(canThoRadio).getAttribute("aria-checked"),"true");
+        //Verify button is selected
+        Assert.assertEquals(driver.findElement(canThoRadio).getAttribute("aria-checked"), "true");
         Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Cần Thơ' and @aria-checked ='true']")).isDisplayed());
-
 
 
     }
 
 
-
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -129,30 +129,32 @@ public class Topic_15_Checkbox_Radio_Button {
         }
 
     }
-    public String getEmailAddress(){
+
+    public String getEmailAddress() {
         Random random = new Random();
-        return  "Bvb" + random.nextInt() + "@gmail.com";
+        return "Bvb" + random.nextInt() + "@gmail.com";
     }
-       // Những dữ liệu dùng để truyền vào xem là tham số
-    public void selectItemInDropDown (String parentCss, String childCss, String itemTextExpected){
+
+    // Những dữ liệu dùng để truyền vào xem là tham số
+    public void selectItemInDropDown(String parentCss, String childCss, String itemTextExpected) {
         driver.findElement(By.cssSelector(parentCss)).click();
         List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childCss)));
-        for (WebElement item: allItems){
+        for (WebElement item : allItems) {
             String textItem = item.getText();
-            if(textItem.equals(itemTextExpected)){
+            if (textItem.equals(itemTextExpected)) {
                 item.click();
                 break;
             }
         }
     }
 
-    public void selectItemInEditableDropDown (String parentCss, String childCss, String itemTextExpected){
+    public void selectItemInEditableDropDown(String parentCss, String childCss, String itemTextExpected) {
         driver.findElement(By.cssSelector(parentCss)).clear();
         driver.findElement(By.cssSelector(parentCss)).sendKeys(itemTextExpected);
         List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childCss)));
-        for (WebElement item: allItems){
+        for (WebElement item : allItems) {
             String textItem = item.getText();
-            if(textItem.equals(itemTextExpected)){
+            if (textItem.equals(itemTextExpected)) {
                 item.click();
                 break;
             }

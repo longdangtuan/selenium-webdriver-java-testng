@@ -20,7 +20,8 @@ public class Topic_07_WebBrowser_Command {
 
     // Cac cau lenh thao tac voi Element
     // element.
-WebElement element;
+    WebElement element;
+
     @Test
     public void Register_01_Emty_Data() throws MalformedURLException {
         driver = new FirefoxDriver(); //**
@@ -99,7 +100,7 @@ WebElement element;
         driver.switchTo().alert().getText();//*
         driver.switchTo().alert().sendKeys("a");//*
 
-       // lấy ra id của cuwra so/ tab hiện tại
+        // lấy ra id của cuwra so/ tab hiện tại
         // Handle Window/ Tab
         String homePageWindowID = driver.getWindowHandle();//*
         driver.switchTo().window(homePageWindowID);//*

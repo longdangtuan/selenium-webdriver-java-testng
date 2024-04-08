@@ -24,9 +24,9 @@ public class Topic_05_Selenium_Text {
         // han che vi tuong doi
         driver.findElement(By.xpath("//p[contains(text(),'Mail Personal or Business Check')]")).isDisplayed();
         // Get text roi verify sau
-     String text =   driver.findElement(By.xpath("//h5[@id='nine']/p[1]")).getText();
+        String text = driver.findElement(By.xpath("//h5[@id='nine']/p[1]")).getText();
         Assert.assertTrue(text.contains("Mail Personal or Business Check"));
         // demo contains(string(),'...')
-driver.quit();
+        driver.quit();
     }
 }

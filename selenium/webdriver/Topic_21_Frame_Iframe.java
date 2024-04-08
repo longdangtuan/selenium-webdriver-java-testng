@@ -20,7 +20,7 @@ public class Topic_21_Frame_Iframe {
     JavascriptExecutor javascriptExecutor;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         actions = new Actions(driver);
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -33,14 +33,13 @@ public class Topic_21_Frame_Iframe {
     }
 
 
-
     @Test
-    public void TC_10_Iframe_Kyna()  {
+    public void TC_10_Iframe_Kyna() {
         driver.get("https://skills.kynaenglish.vn/");
         driver.switchTo().frame(driver.findElement(By.cssSelector("div.face-content>iframe")));
 
         // Verify follower
-        Assert.assertEquals(driver.findElement(By.xpath("//a[@title='Kyna.vn']/parent::div/following-sibling::div")).getText(),"178K followers");
+        Assert.assertEquals(driver.findElement(By.xpath("//a[@title='Kyna.vn']/parent::div/following-sibling::div")).getText(), "178K followers");
 
         // Click vào chat iframe
         driver.switchTo().defaultContent();
@@ -58,12 +57,12 @@ public class Topic_21_Frame_Iframe {
     }
 
     @Test
-    public void TC_11_IFrame_formsite()  {
-    driver.get("https://www.formsite.com/templates/education/campus-safety-survey/");
-    driver.findElement(By.cssSelector("div#imageTemplateContainer>img")).click();
-    driver.switchTo().frame(driver.findElement(By.cssSelector("div#formTemplateContainer>iframe")));
+    public void TC_11_IFrame_formsite() {
+        driver.get("https://www.formsite.com/templates/education/campus-safety-survey/");
+        driver.findElement(By.cssSelector("div#imageTemplateContainer>img")).click();
+        driver.switchTo().frame(driver.findElement(By.cssSelector("div#formTemplateContainer>iframe")));
 
-    // Nhập dữ liệu vào 3 fields và ấn submit
+        // Nhập dữ liệu vào 3 fields và ấn submit
         new Select(driver.findElement(By.name("RESULT_RadioButton-2"))).selectByVisibleText("Freshman");
         new Select(driver.findElement(By.name("RESULT_RadioButton-3"))).selectByVisibleText("East Dorm");
         WebElement radioBtn4_1 = driver.findElement(By.id("RESULT_RadioButton-4_1"));
@@ -78,18 +77,18 @@ public class Topic_21_Frame_Iframe {
 
         //Verify error message
         driver.findElement(By.cssSelector("button#login")).click();
-        Assert.assertEquals(driver.findElement(By.cssSelector("div#message-error")).getText(),"Username and password are both required.");
-
-
+        Assert.assertEquals(driver.findElement(By.cssSelector("div#message-error")).getText(), "Username and password are both required.");
 
 
     }
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {

@@ -29,7 +29,7 @@ public class Topic_26_Wait_02_Find_Element {
     FluentWait fluentWait;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         // Implicit Wait Selenium Version 4.x
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -37,7 +37,7 @@ public class Topic_26_Wait_02_Find_Element {
         driver.get("https://www.facebook.com/");
 
         // Explicit Wait Selenium Ver 4
-       // explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Fluent Wait Selenium Ver 4
         /*fluentWait = new FluentWait(driver);
@@ -47,19 +47,18 @@ public class Topic_26_Wait_02_Find_Element {
     }
 
 
-
     @Test
-    public void TC_01_FindElement()  {
-    // Case 1 - Element được tìm thấy trong khỏoảng thời gian được set
+    public void TC_01_FindElement() {
+        // Case 1 - Element được tìm thấy trong khỏoảng thời gian được set
         // Sẽ không cần chờ hết timeout
         // Tìm thấy sẽ trả về 1 Web Element
         // Qua step tiếp theo
-driver.findElement(By.cssSelector("input#email"));
+        driver.findElement(By.cssSelector("input#email"));
 
         // Case 2 - Element được tìm thấy nhưng có hơn 1
         // Sẽ không chờ hết timeout
         // Lấy element đầu tiên dù có n node
-driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendKeys("haha@email.com");
+        driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendKeys("haha@email.com");
 
 // Case 3 - Element không được tìm thấy
         // Chờ hết timeout 10s
@@ -71,9 +70,9 @@ driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendK
     }
 
     @Test
-    public void TC_02_Find_Elements()  {
+    public void TC_02_Find_Elements() {
         List<WebElement> elementList;
-    // Case 1 - Element được tìm thấy chỉ có 1
+        // Case 1 - Element được tìm thấy chỉ có 1
         // Không cần chờ hết timeout
         // Trả về 1 List Elements
         /*System.out.println("Start step: " + getDateTimeNow());
@@ -105,25 +104,24 @@ driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendK
     }
 
     @Test
-    public void TC_03()  {
-
-
+    public void TC_03() {
 
 
     }
 
     @Test
-    public void TC_04()  {
+    public void TC_04() {
 
 
     }
 
 
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -132,8 +130,8 @@ driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendK
 
     }
 
-    public String getDateTimeNow(){
-        Date date =  new Date();
+    public String getDateTimeNow() {
+        Date date = new Date();
         return date.toString();
     }
 

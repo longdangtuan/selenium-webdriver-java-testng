@@ -27,15 +27,14 @@ public class Topic_27_Wait_03_Implicit_Wait {
     FluentWait fluentWait;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         // Implicit Wait Selenium Version 4.x
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 
-
         // Explicit Wait Selenium Ver 4
-       // explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Fluent Wait Selenium Ver 4
         /*fluentWait = new FluentWait(driver);
@@ -45,26 +44,22 @@ public class Topic_27_Wait_03_Implicit_Wait {
     }
 
 
-
     @Test
-    public void TC_01_Implicitwait()  {
+    public void TC_01_Implicitwait() {
         driver.get("https://automationfc.github.io/dynamic-loading/");
         driver.findElement(By.cssSelector("div#start>button")).click();
 
-        Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(),"Hello World!");
+        Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
 
     }
 
 
-
-
-
-
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -73,8 +68,8 @@ public class Topic_27_Wait_03_Implicit_Wait {
 
     }
 
-    public String getDateTimeNow(){
-        Date date =  new Date();
+    public String getDateTimeNow() {
+        Date date = new Date();
         return date.toString();
     }
 

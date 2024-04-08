@@ -18,14 +18,15 @@ import java.util.Random;
 
 public class Topic_14_Button {
     WebDriver driver;
-   // Tường minh: trạng thái cụ thể cho element
+    // Tường minh: trạng thái cụ thể cho element
     // Visible//Invisible/Presence/Number/Clickable/...
     WebDriverWait explicitWait;
 
 
     String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password = "Bvb_1909";
+
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -36,7 +37,7 @@ public class Topic_14_Button {
     }
 
     @Test
-    public void TC_01_Default_Telerik_Checkbox_Radio()  {
+    public void TC_01_Default_Telerik_Checkbox_Radio() {
         driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
         By dualZoneCheckbox = By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::input");
         // Click vào checkbox
@@ -63,20 +64,19 @@ public class Topic_14_Button {
     }
 
     @Test
-    public void TC_02_Select_All()  {
+    public void TC_02_Select_All() {
         driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
 
 
     }
 
 
-
-
-
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -84,22 +84,23 @@ public class Topic_14_Button {
         }
 
     }
-    public String getEmailAddress(){
+
+    public String getEmailAddress() {
         Random random = new Random();
-        return  "Bvb" + random.nextInt() + "@gmail.com";
+        return "Bvb" + random.nextInt() + "@gmail.com";
     }
 
-    public void checkToElement(By byXpath){
+    public void checkToElement(By byXpath) {
         // Nếu như element chưa được chọn thì mới click
-        if (!driver.findElement(byXpath).isSelected()){
+        if (!driver.findElement(byXpath).isSelected()) {
             driver.findElement(byXpath).click();
             sleepInSeconds(2);
         }
     }
 
-    public void uncheckToElement(By byXpath){
+    public void uncheckToElement(By byXpath) {
         // Nếu như element chưa được chọn thì mới click
-        if (driver.findElement(byXpath).isSelected()){
+        if (driver.findElement(byXpath).isSelected()) {
             driver.findElement(byXpath).click();
             sleepInSeconds(2);
         }

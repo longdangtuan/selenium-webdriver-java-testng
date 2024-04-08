@@ -17,14 +17,15 @@ import java.util.Random;
 
 public class Topic_13_Custom_Dropdown {
     WebDriver driver;
-   // Tường minh: trạng thái cụ thể cho element
+    // Tường minh: trạng thái cụ thể cho element
     // Visible//Invisible/Presence/Number/Clickable/...
     WebDriverWait explicitWait;
 
 
     String firstName = "Long", lastName = "Dang", emailAddress = getEmailAddress(), password = "Bvb_1909";
+
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new FirefoxDriver();
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -36,7 +37,7 @@ public class Topic_13_Custom_Dropdown {
     }
 
     @Test
-    public void TC_01_Jquery()  {
+    public void TC_01_Jquery() {
         driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
         // Click vào 1 thẻ để nó xổ hết các item bên trong dropdown ra
         /*driver.findElement(By.cssSelector("span#number-button")).click();
@@ -52,46 +53,48 @@ public class Topic_13_Custom_Dropdown {
                 break; // 9 -> 19 không được kiểm tra
             }
         }*/
-        selectItemInDropDown("span#number-button","ul#number-menu div", "10" );
+        selectItemInDropDown("span#number-button", "ul#number-menu div", "10");
         // 3.1 Nếu như item cần chọn nó hiển thị thì click vào
         // 3.2 Nếu như item càn chọn nằm bên dưới thì 1 số trường hợp cần scroll xuống để hiển thị lên rồi mới chọn (Angular/ React/ Vuejs/,,,)
         // 4 Trước khi click cần kiểm tra nếu như text của item bằng với item cần chọn thì click vào
 
 
-
     }
+
     @Test
-    public void TC_02_React()  {
+    public void TC_02_React() {
         driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
-selectItemInDropDown("i.dropdown.icon","div.item>span.text","Christian");
-Assert.assertEquals(driver.findElement(By.cssSelector("div.divider.text")).getText(),"Christian");
-sleepInSeconds(3);
-
-    }
-
-    @Test
-    public void TC_03_Vuejs()  {
-        driver.get("https://mikerodham.github.io/vue-dropdowns/");
-        selectItemInDropDown("li.dropdown-toggle","ul.dropdown-menu a","Second Option");
-        Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(),"Second Option");
+        selectItemInDropDown("i.dropdown.icon", "div.item>span.text", "Christian");
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.divider.text")).getText(), "Christian");
         sleepInSeconds(3);
 
     }
 
     @Test
-    public void TC_04_Editable_Dropdown()  {
+    public void TC_03_Vuejs() {
+        driver.get("https://mikerodham.github.io/vue-dropdowns/");
+        selectItemInDropDown("li.dropdown-toggle", "ul.dropdown-menu a", "Second Option");
+        Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Second Option");
+        sleepInSeconds(3);
+
+    }
+
+    @Test
+    public void TC_04_Editable_Dropdown() {
         driver.get("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/");
-        selectItemInEditableDropDown("input.search","div.item span", "Algeria");
-        Assert.assertEquals(driver.findElement(By.cssSelector("div.divider.text")).getText(),"Algeria" );
-       sleepInSeconds(3);
+        selectItemInEditableDropDown("input.search", "div.item span", "Algeria");
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.divider.text")).getText(), "Algeria");
+        sleepInSeconds(3);
 
     }
 
 
     @AfterClass
-    public void afterClass(){driver.quit();}
+    public void afterClass() {
+        driver.quit();
+    }
 
-    public void sleepInSeconds(long timeInSecond){
+    public void sleepInSeconds(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
@@ -99,30 +102,32 @@ sleepInSeconds(3);
         }
 
     }
-    public String getEmailAddress(){
+
+    public String getEmailAddress() {
         Random random = new Random();
-        return  "Bvb" + random.nextInt() + "@gmail.com";
+        return "Bvb" + random.nextInt() + "@gmail.com";
     }
-       // Những dữ liệu dùng để truyền vào xem là tham số
-    public void selectItemInDropDown (String parentCss, String childCss, String itemTextExpected){
+
+    // Những dữ liệu dùng để truyền vào xem là tham số
+    public void selectItemInDropDown(String parentCss, String childCss, String itemTextExpected) {
         driver.findElement(By.cssSelector(parentCss)).click();
         List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childCss)));
-        for (WebElement item: allItems){
+        for (WebElement item : allItems) {
             String textItem = item.getText();
-            if(textItem.equals(itemTextExpected)){
+            if (textItem.equals(itemTextExpected)) {
                 item.click();
                 break;
             }
         }
     }
 
-    public void selectItemInEditableDropDown (String parentCss, String childCss, String itemTextExpected){
+    public void selectItemInEditableDropDown(String parentCss, String childCss, String itemTextExpected) {
         driver.findElement(By.cssSelector(parentCss)).clear();
         driver.findElement(By.cssSelector(parentCss)).sendKeys(itemTextExpected);
         List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(childCss)));
-        for (WebElement item: allItems){
+        for (WebElement item : allItems) {
             String textItem = item.getText();
-            if(textItem.equals(itemTextExpected)){
+            if (textItem.equals(itemTextExpected)) {
                 item.click();
                 break;
             }
