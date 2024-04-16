@@ -43,7 +43,7 @@ public class Topic_16_Handle_Alert {
     @Test
     public void TC_07_Accept_Alert() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
-        driver.findElement(By.xpath("//button[text()='Click for JS Alert")).click();
+        driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
         // Chờ cho alert present
         // Nếu trong thời gian chờ mà xuất hiện thì tự swtich vào
         // Nếu hết thời gian chờ mà chưa xuất hiện thì fail
