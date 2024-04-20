@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Selenium WebDriver">
-    <groups>
-        <run>
-            <include name="category"/>
-        </run>
-    </groups>
-    <test name="Group Annotation"></test>
-    <packages>
-        <package name="category"></package>
-        <package name="payment"></package>
-        <package name="product"></package>
-    </packages>
+<suite name="Selenium WebDriver" parallel="tests">
+   <test name="Run on Firefox">
+       <parameter name="browser" value="firefox"></parameter>
+       <parameter name="version" value="latest"></parameter>
+       <classes>
+           <class name="TestNG.Topic_03_Parameter"></class>
+       </classes>
+   </test>
+    <test name="Run on Chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="version" value="latest"></parameter>
+        <classes>
+            <class name="TestNG.Topic_03_Parameter"></class>
+        </classes>
+    </test>
 </suite>

@@ -3,10 +3,9 @@ package TestNG;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-@Listeners(listener.ExtentReport.class)
-public class Topic_02_Assert {
+
+public class Topic_05_Dependencies {
     WebDriver driver;
 @Test(description = "test description")
     public void test01(){
